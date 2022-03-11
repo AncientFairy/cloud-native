@@ -17,4 +17,4 @@ spec: # # 这是关于该 Deployment 的描述，可以理解为你期待该 Dep
     spec: # 期望 Pod 实现的功能（即在 Pod 中部署）
       containers: # 生成 container，与 docker 中的 container 是同一种
       - name:  nginx # container 的名称
-        image:  nginx:1.7.9 # 使用镜像 nginx:1.7.9 创建 container ，该 container 默认 80 端口可访问
+        image:  nginx:1.20 # 使用镜像 nginx:1.20 创建 container ，该 container 默认 80 端口可访问
