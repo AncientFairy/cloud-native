@@ -1,4 +1,4 @@
-apiVersion: v1 # 用来创建对象时所使用的Kubernetes API版本
+apiVersion: v1 # 用来创建对象时所使用的 Kubernetes API版本
 kind: Pod # 被创建对象的类型
 # 以上是类型元数据信息 typemeta
 metadata: # 用于唯一确定该对象的元数据
