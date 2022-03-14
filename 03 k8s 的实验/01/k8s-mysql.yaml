@@ -16,7 +16,7 @@ spec:
       requests:
         cpu: 100m
         memory: 200Mi
-    env: # 环境变量
+    env: # 环境变量 相当于 docker run -e  xxx = xxx
     - name: MYSQL_ROOT_PASSWORD # root 的密码
       value: "123456"
     - name:  MYSQL_DATABASE # mysql 的 数据库
