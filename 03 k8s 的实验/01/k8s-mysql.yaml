@@ -9,14 +9,14 @@ spec:
   containers:
   - name: mysql-pod
     image: mysql:5.7
-    resources:
+    resources: # 资源限制
       limits:
         cpu: 200m
         memory: 500Mi
       requests:
         cpu: 100m
         memory: 200Mi
-    env:
+    env: # 环境变量
     - name: MYSQL_ROOT_PASSWORD # root 的密码
       value: "123456"
     - name:  MYSQL_DATABASE # mysql 的 数据库
