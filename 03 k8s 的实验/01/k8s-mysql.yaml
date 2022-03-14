@@ -24,16 +24,9 @@ spec:
     ports:
     - containerPort:  3306
       name:  http
-    volumeMounts:
-    - name: localtime
-      mountPath: /etc/localtime
     command: # 直接覆盖容器的默认命令，相当于覆盖 Dockerfile 中的 ENTRYPOINT 和 CMD
      - --lower_case_table_names=1
      - --character-set-server=utf8mb4 
      - --collation-server=utf8mb4_general_ci 
      - --default-authentication-plugin=mysql_native_password  
-  volumes:
-    - name: localtime
-      hostPath:
-        path: /usr/share/zoneinfo/Asia/Shanghai
   restartPolicy: Always
