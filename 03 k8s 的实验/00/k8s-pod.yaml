@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  demo # 名称空间的名字
+spec: {} # 如果为空，其实可以不写
+status: {} # 如果为空，其实可以不写
+
+# 以上是 namespace 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: demo # 指定自定义的名称空间，如果不写，默认为 default
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort:  80
+      name:  http
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+  volumes:
+    - name: localtime
+      hostPath:
+        path: /usr/share/zoneinfo/Asia/Shanghai
+  restartPolicy: Always 
+
+  # 以上的 Pod
