@@ -10,7 +10,7 @@ status: {} # 如果为空，其实可以不写
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: nginx-pod
   namespace: demo # 指定自定义的名称空间，如果不写，默认为 default
   labels:
     app: nginx
