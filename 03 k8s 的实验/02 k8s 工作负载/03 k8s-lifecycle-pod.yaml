@@ -5,6 +5,9 @@ metadata:
   labels:
     app: pod-lifecycle
 spec:
+  initContainers: # Pod 在启动 containers 之前，先要运行 initContainers 中的所有容器
+    - name: nginx
+      image: nginx:1.20.2
   containers:
     - name: nginx
       image: nginx:1.20.2
