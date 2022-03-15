@@ -1,40 +1,28 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name:  demo # 名称空间的名字
-spec: {} # 如果为空，其实可以不写
-status: {} # 如果为空，其实可以不写
+  name:  demo 
+spec: {} 
+status: {} 
 
 # 以上是 namespace 
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-pod
-  namespace: demo # 指定自定义的名称空间，如果不写，默认为 default
+  name: demo-pod
+  namespace: demo 
   labels:
     app: nginx
 spec:
   containers:
+  imagePullSecrets: # Pull镜像时使用的 secret 名称，以 key：secretkey 格式指定
+    - name:  aliyun 
   - name: nginx
-    image: nginx
-    resources:
-      limits:
-        cpu: 200m
-        memory: 500Mi
-      requests:
-        cpu: 100m
-        memory: 200Mi
-    ports:
-    - containerPort:  80
-      name:  http
-    volumeMounts:
-    - name: localtime
-      mountPath: /etc/localtime
-  volumes:
-    - name: localtime
-      hostPath:
-        path: /usr/share/zoneinfo/Asia/Shanghai
-  restartPolicy: Always 
+    image: nginx:1.20.2 # Docker 的镜像名称，和 Docker 命令一样，my-registry.example.com:5000/example/web-example:v1.0，实际开发中，建议锁定镜像的版本。
+    imagePullPolicy: Always # 镜像拉取策略：IfNotPresent（默认）、Always、Never
+  - name: arcgis
+    image: registry.cn-shanghai.aliyuncs.com/xudaxian/arcgis/v1.0 
+    imagePullPolicy: Always 
 
   # 以上的 Pod
