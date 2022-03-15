@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.20.2
+    resources: # 资源限制
+      limits:
+        cpu: 2
+        memory: 1500M
+      requests:
+        cpu: 2
+        memory: 1024M
+    ports:
+    - containerPort:  80
+  restartPolicy: Always
