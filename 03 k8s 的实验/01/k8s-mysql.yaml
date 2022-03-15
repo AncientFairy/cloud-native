@@ -9,24 +9,24 @@ spec:
   containers:
   - name: mysql-pod
     image: mysql:5.7
-    resources: # 资源限制
+    resources:
       limits:
         cpu: 200m
         memory: 500Mi
       requests:
         cpu: 100m
         memory: 200Mi
-    env: # 环境变量 相当于 docker run -e  xxx = xxx
-    - name: MYSQL_ROOT_PASSWORD # root 的密码
+    env:
+    - name: MYSQL_ROOT_PASSWORD
       value: "123456"
-    - name:  MYSQL_DATABASE # mysql 的 数据库
+    - name: MYSQL_DATABASE
       value: ssm
+    args:
+      - "--lower_case_table_names=1"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_general_ci"
+      - "--default-authentication-plugin=mysql_native_password"    
     ports:
     - containerPort:  3306
       name:  http
-    args: # 直接覆盖容器的默认命令，相当于覆盖 Dockerfile 中的 ENTRYPOINT 和 CMD
-     - --lower_case_table_names=1
-     - --character-set-server=utf8mb4 
-     - --collation-server=utf8mb4_general_ci 
-     - --default-authentication-plugin=mysql_native_password  
   restartPolicy: Always
