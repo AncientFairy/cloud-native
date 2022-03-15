@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  demo 
+spec: {} 
+status: {} 
+
+# 以上是 namespace 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+  namespace: demo 
+  labels:
+    app: nginx
+spec:
+  containers:
+  imagePullSecrets: # Pull镜像时使用的 secret 名称，以 key：secretkey 格式指定
+    - name:  aliyun 
+  - name: nginx
+    image: nginx:1.20.2 # Docker 的镜像名称，和 Docker 命令一样，my-registry.example.com:5000/example/web-example:v1.0，实际开发中，建议锁定镜像的版本。
+    imagePullPolicy: Always # 镜像拉取策略：IfNotPresent（默认）、Always、Never
+  - name: arcgis
+    image: registry.cn-shanghai.aliyuncs.com/xudaxian/arcgis/v1.0 
+    imagePullPolicy: Always 
+
+  # 以上的 Pod
