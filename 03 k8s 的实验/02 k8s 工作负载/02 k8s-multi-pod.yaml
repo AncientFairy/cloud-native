@@ -16,7 +16,7 @@ spec:
       command:
         - /bin/sh
         - -c
-        - while true; do sleep 1 ;echo $(date "+%Y%m%d-%H%M%S") > /app/index.html ;done
+        - while true; do sleep 1 ;echo $(date "+%Y-%m-%d-%H:%M:%S") > /app/index.html ;done;
       volumeMounts:
         - name: nginx-volume
           mountPath: /app
