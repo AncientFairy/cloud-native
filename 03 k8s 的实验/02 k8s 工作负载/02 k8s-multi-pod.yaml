@@ -9,8 +9,8 @@ spec:
     - name: nginx-container
       image: nginx
       volumeMounts: # 声明卷挂载
-        - mountPath: /usr/share/nginx/html
-          name: nginx-volume
+        - name: nginx-volume
+          mountPath: /usr/share/nginx/html
     - name: alpine-container
       image: alpine
       command:
@@ -18,8 +18,8 @@ spec:
         - -c
         - while true; do sleep 1 ;echo $(date "+%Y%m%d-%H%M%S") > /app/index.html ;done
       volumeMounts:
-        - mountPath: /app
-          name: nginx-volume
+        - name: nginx-volume
+          mountPath: /app
   volumes:
     - name: nginx-volume
       emptyDir: {} # 相当于 Docker 中的匿名挂载，会在外部创建一个位置
