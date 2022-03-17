@@ -5,7 +5,7 @@ metadata: # 必须字段
   namespace: default # 名称空间
   labels: # 标签
     app: nginx-deployment
-spec: # 规格，期望状态
+spec: # 规格，期望状态，必须字段
   selector: # 选择器，用来帮助 Deployment 来筛选 Pod，必须字段
     matchLabels: # 匹配标签
       app: nginx # 通常而言，和 template 中的 metadata.labels 保持一致
