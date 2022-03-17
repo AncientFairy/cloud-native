@@ -12,6 +12,7 @@ spec:
       app: nginx
   revisionHistoryLimit: 15 # 旧副本集保留的数量，即可回滚的数量。默认为 10 。
   progressDeadlineSeconds: 600 # 处理的最终期限，如果超过了这个指定的时间就会给集群汇报错误。默认为 600s 。
+  paused: false # 暂停更新，默认为 false 。
   strategy: # 更新策略
     type: RollingUpdate # 滚动更新
   template:
