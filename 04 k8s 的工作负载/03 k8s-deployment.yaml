@@ -10,6 +10,8 @@ spec:
   selector:
     matchLabels:
       app: nginx
+  revisionHistoryLimit: 15 # 旧副本集保留的数量，即可回滚的数量。默认为 10 。
+  progressDeadlineSeconds: 600 # 处理的最终期限，如果超过了这个指定的时间就会给集群汇报错误。默认为 600s 。
   strategy: # 更新策略
     type: RollingUpdate # 滚动更新
   template:
