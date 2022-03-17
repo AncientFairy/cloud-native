@@ -1,6 +1,6 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
+apiVersion: apps/v1 # 必须字段
+kind: Deployment # 必须字段
+metadata: # 必须字段
   name: nginx-deployment # 部署的 deployment 的名称
   namespace: default # 名称空间
   labels: # 标签
