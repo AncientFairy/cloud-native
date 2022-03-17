@@ -15,6 +15,9 @@ spec:
   paused: false # 暂停更新，默认为 false 。
   strategy: # 更新策略
     type: RollingUpdate # 滚动更新
+    rollingUpdate:
+      maxSurge: 25% # 一次最多新建几个 Pod，可以写数字或百分比，maxUnavailable 为 0 的时候，maxSurge 不能为 0 。
+      maxUnavailable: 25% # 最大不可用的 Pod，可以写数字或百分比
   template:
     metadata:
       name: nginx
