@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: ss-nginx 
-  serviceName: "nginx" # 服务名称
+  serviceName: "nginx-svc" # 服务名称，这个字段需要和 service 的 metadata.name 相同
   replicas: 3 # 副本数
   template:
     metadata:
