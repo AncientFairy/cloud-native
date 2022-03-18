@@ -4,7 +4,7 @@ metadata:
   name: stateful-nginx
   namespace: default
 spec:
-  podManagementPolicy: OrderedReady # 控制 Pod 创建、升级以及扩缩容逻辑。Parallel 和 OrderedReady， 默认是 OrderedReady
+  podManagementPolicy: OrderedReady # 控制 Pod 创建、升级以及扩缩容逻辑。Parallel（并发一起启动） 和 OrderedReady（有序启动）， 默认是 OrderedReady
   updateStrategy: # 更新策略
     type: RollingUpdate # OnDelete 删除之后才更新；RollingUpdate 滚动更新
     rollingUpdate:
