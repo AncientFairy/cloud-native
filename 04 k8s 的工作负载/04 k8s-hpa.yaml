@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: pc-hpa
+spec:
+  minReplicas: 1 # 最小 Pod 数量
+  maxReplicas: 10 # 最大 Pod 数量
+  targetCPUUtilizationPercentage: 3 # CPU 使用率指标，即 CPU 超过 3%（Pod 的 limit 的 cpu ） 就进行扩容
+  scaleTargetRef:  # 指定要控制的Nginx的信息
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx
