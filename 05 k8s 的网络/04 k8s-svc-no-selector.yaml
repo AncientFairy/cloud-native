@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-svc-no-selector
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: cluster-svc-no-selector
+  namespace: default
+subsets:
+- addresses:
+  - ip: 10.0.0.1
+  - ip: 10.0.0.2
+  - ip: 10.0.0.3
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
