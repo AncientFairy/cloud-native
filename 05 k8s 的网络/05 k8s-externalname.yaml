@@ -5,4 +5,4 @@ metadata:
   namespace: default
 spec:
   type: ExternalName # ExternalName 类型的 Service 用于引入集群外部的服务，它通过 externalName 属性指定一个服务的地址，然后在集群内部访问此 Service 就可以访问到外部的服务了。
-  externalName: www.baidu.com # 改为 IP 也是可以的
+  externalName: www.baidu.com # 其他的Pod可以通过访问这个service而访问其他的域名服务，但是需要注意目标服务的跨域问题。
