@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     app: nginx   
-  type: LoadBalancer # 负载均衡，开放给云平台实现的，阿里云、百度云等。相当于在阿里云上开通负载均衡器的服务。
+  type: LoadBalancer # 负载均衡，开放给云平台实现的，阿里云、百度云等。
   ports:
   - name: nginx
     protocol: TCP
