@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-load-balancer-svc
+  namespace: default
+spec:
+  selector:
+    app: nginx   
+  type: LoadBalancer # 负载均衡，开放给云平台实现的，阿里云、百度云等。相当于在阿里云上开通负载均衡器的服务。
+  ports:
+  - name: nginx
+    protocol: TCP
+    port: 80 # service 的端口，访问到 service 的 80 端口
+    targetPort: 80 # Pod 的端口，派发到 Pod 的 80 端口
+
+     
