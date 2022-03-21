@@ -16,9 +16,9 @@ metadata:
   namespace: default
 subsets:
 - addresses:
-  - ip: 10.0.0.1
-  - ip: 10.0.0.2
-  - ip: 10.0.0.3
+  - ip: 220.181.38.251 # 百度
+  - ip: 221.122.82.30 # 搜狗 
+  - ip: 61.129.7.47 # QQ
   ports:
   - name: http
     port: 80
