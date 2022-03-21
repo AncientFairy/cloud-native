@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-sessionAffinity-svc
+  namespace: default
+spec:
+  selector:
+    app: nginx
+  type: ClusterIP 
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    ClientIP: 
+       timeoutSeconds: 30 * 60 # 30 分钟
+  ports:
+  - name: nginx
+    protocol: TCP
+    port: 80 
+    targetPort: 80 
