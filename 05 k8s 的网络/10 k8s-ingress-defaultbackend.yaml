@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-http
+  namespace: default
+spec:
+  defaultBackend: # 默认的映射路径
+    service:
+      name: xxx
+      port:
+        number: 8089
+  rules: # 规则
+    - host: nginx.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
+      http: # 指定路由规则
+        paths:
+          - path: /
+            pathType: Prefix # 匹配规则，Prefix 前缀匹配 nginx.com/* 都可以匹配到
+            backend: # 指定路由的后台服务的 service 名称
+              service:
+                name: nginx-svc # 服务名
+                port:
+                  number: 80 # 服务的端口
+    - host: tomcat.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
+      http: # 指定路由规则
+        paths:
+          - path: /
+            pathType: Prefix # 匹配规则，Prefix 前缀匹配 nginx.com/* 都可以匹配到
+            backend: # 指定路由的后台服务的 service 名称
+              service:
+                name: tomcat-svc # 服务名
+                port:
+                  number: 8080 # 服务的端口
