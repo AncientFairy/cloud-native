@@ -24,7 +24,7 @@ metadata:
     app: nginx
 spec:
   hostname: nginx1
-  subdomain: default-subdomain # 必须和 svc 的 name 相同，才可以使用 podName.subdomain.名称空间.svc.cluster.local 访问，否则访问不到指定的 Pod 。
+  subdomain: default-subdomain # 必须和 svc 的 name 相同，才可以使用 hostname.subdomain.名称空间.svc.cluster.local 访问，否则访问不到指定的 Pod 。
   containers:
   - name: nginx
     image: nginx:1.20.2
