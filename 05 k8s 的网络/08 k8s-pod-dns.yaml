@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: default-subdomain
+  namespace: default
+spec:
+  selector:
+    app: nginx
+  type: ClusterIP
+  clusterIP: None 
+  ports:
+  - name: foo
+    protocol: TCP
+    port: 1234
+    targetPort: 1234
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  hostname: nginx1
+  subdomain: default-subdomain # 必须和 svc 的 name 相同，才可以使用 podName.subdomain.名称空间.svc.cluster.local 访问，否则访问不到指定的 Pod 。
+  containers:
+  - name: nginx
+    image: nginx:1.20.2
+    resources:
+      limits:
+        cpu: 250m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort:  80
+      name:  nginx
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+  volumes:
+    - name: localtime
+      hostPath:
+        path: /usr/share/zoneinfo/Asia/Shanghai
+  restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx2
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  hostname: nginx2
+  subdomain: default-subdomain # 必须和 svc 的 name 相同，才可以使用 hostname.subdomain.名称空间.svc.cluster.local 访问，否则访问不到指定的 Pod 。
+  containers:
+  - name: nginx
+    image: nginx:1.20.2
+    resources:
+      limits:
+        cpu: 250m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort:  80
+      name:  nginx
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+  volumes:
+    - name: localtime
+      hostPath:
+        path: /usr/share/zoneinfo/Asia/Shanghai
+  restartPolicy: Always
+    
+
