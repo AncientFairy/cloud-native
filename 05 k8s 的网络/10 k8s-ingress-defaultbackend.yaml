@@ -4,7 +4,7 @@ metadata:
   name: ingress-http
   namespace: default
 spec:
-  defaultBackend: # 默认的映射路径
+  defaultBackend: # 指定所有未匹配的默认后端
     service:
       name: xxx
       port:
