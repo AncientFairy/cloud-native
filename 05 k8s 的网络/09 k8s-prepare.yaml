@@ -90,7 +90,7 @@ spec:
   selector:
     app: nginx
   type: ClusterIP
-  sessionAffinity: None
+  clusterIP: None
   ports:
     - name: nginx
       protocol: TCP
@@ -107,7 +107,7 @@ spec:
   selector:
     app: tomcat
   type: ClusterIP
-  sessionAffinity: None
+  clusterIP: None
   ports:
     - name: tomcat
       protocol: TCP
