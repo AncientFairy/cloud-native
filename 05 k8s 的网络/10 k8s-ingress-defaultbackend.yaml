@@ -6,27 +6,17 @@ metadata:
 spec:
   defaultBackend: # 指定所有未匹配的默认后端
     service:
-      name: xxx
+      name: nginx-svc
       port:
-        number: 8089
-  rules: # 规则
-    - host: nginx.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
-      http: # 指定路由规则
+        number: 80
+  rules: 
+    - host: tomcat.com 
+      http: 
         paths:
-          - path: /
-            pathType: Prefix # 匹配规则，Prefix 前缀匹配 nginx.com/* 都可以匹配到
-            backend: # 指定路由的后台服务的 service 名称
+          - path: /abc
+            pathType: Prefix 
+            backend: 
               service:
-                name: nginx-svc # 服务名
+                name: tomcat-svc
                 port:
-                  number: 80 # 服务的端口
-    - host: tomcat.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
-      http: # 指定路由规则
-        paths:
-          - path: /
-            pathType: Prefix # 匹配规则，Prefix 前缀匹配 nginx.com/* 都可以匹配到
-            backend: # 指定路由的后台服务的 service 名称
-              service:
-                name: tomcat-svc # 服务名
-                port:
-                  number: 8080 # 服务的端口
+                  number: 8080 
