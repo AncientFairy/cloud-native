@@ -1,19 +1,22 @@
 apiVersion: networking.k8s.io/v1
-kind: Ingress
+kind: Ingress 
 metadata:
-  name: rate-ingress
+  name: ingress-http
   namespace: default
-  annotations: # https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting
+  annotations: 
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/limit-rps: "1" # 限流
 spec:
-  rules:
-  - host: nginx.xudaxian.com
-    http:
+  rules: # 规则
+  - host: nginx.xudaxian.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
+    http: # 指定路由规则
       paths:
       - path: /
-        pathType: Prefix
-        backend:
+        pathType: Prefix # 匹配规则，Prefix 前缀匹配 nginx.xudaxian.com/* 都可以匹配到
+        backend: # 指定路由的后台服务的 service 名称
           service:
-            name: nginx-svc
+            name: nginx-svc # 服务名
             port:
-              number: 80
+              number: 80 # 服务的端口
+                         
