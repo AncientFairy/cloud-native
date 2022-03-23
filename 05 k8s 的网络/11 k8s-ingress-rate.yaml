@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rate-ingress
+  namespace: default
+  annotations: # https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting
+    nginx.ingress.kubernetes.io/limit-rps: "1" # 限流
+spec:
+  rules:
+  - host: nginx.xudaxian
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-svc
+            port:
+              number: 80
