@@ -3,9 +3,12 @@ kind: Ingress
 metadata:
   name: ingress-http
   namespace: default
+  annotations: 
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   rules: # 规则
-  - host: nginx.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
+  - host: nginx.xudaxian.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
     http: # 指定路由规则
       paths:
       - path: /
@@ -15,7 +18,7 @@ spec:
             name: nginx-svc # 服务名
             port:
               number: 80 # 服务的端口
-  - host: tomcat.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
+  - host: tomcat.xudaxian.com # 指定的监听的主机域名，相当于 nginx.conf 的 server { xxx }
     http: # 指定路由规则
       paths:
       - path: /
@@ -24,4 +27,4 @@ spec:
           service:
             name: tomcat-svc # 服务名
             port:
-              number: 8080 # 服务的端口             
+              number: 8080 # 服务的端口              
