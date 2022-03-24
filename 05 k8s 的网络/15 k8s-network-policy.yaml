@@ -1,0 +1,32 @@
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: networkpol-01
+  namespace: default
+spec:
+  podSelector: # Pod 选择器
+    matchLabels:
+      app: nginx  # 选中的 Pod 就被隔离起来了
+  policyTypes: # 策略类型
+  - Ingress # Ingress 入站规则、Egress 出站规则
+  - Egress 
+  ingress: # 入站白名单，什么能访问我
+  - from:
+    - podSelector: # 选中的 Pod 可以访问 spec.matchLabels 中筛选的 Pod 
+        matchLabels:
+          access: granted
+    ports:
+    - protocol: TCP
+      port: 80
+  egress: # 出站白名单，我能访问什么
+    - to:
+       - podSelector: # spec.matchLabels 中筛选的 Pod 能访问的 Pod
+          matchLabels:
+            app: tomcat
+       - namespaceSelector: 
+          matchLabels:
+            kubernetes.io/metadata.name: dev # spec.matchLabels 中筛选的 Pod 能访问 dev 命名空间下的所有
+      ports:
+      - protocol: TCP
+        port: 8080    
