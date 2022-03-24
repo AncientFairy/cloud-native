@@ -26,7 +26,7 @@ metadata:
     nginx.ingress.kubernetes.io/canary: "true" # 开启金丝雀 
     nginx.ingress.kubernetes.io/canary-by-header: "Region" # 基于请求头，如果 Region 是 always ，就路由到金丝雀版本；如果 Region 是 never ，就永远不会路由到金丝雀版本
     nginx.ingress.kubernetes.io/canary-by-header-value: "dd" # 指定值
-    nginx.ingress.kubernetes.io/canary-by-header-pattern: "cd|sz"
+    # nginx.ingress.kubernetes.io/canary-by-header-pattern: "cd|sz"
 spec:
   ingressClassName: "nginx"
   rules:
