@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-canary
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true" # 开启金丝雀 
+    nginx.ingress.kubernetes.io/canary-weight: "10" # 基于服务权重
+spec:
+  ingressClassName: "nginx"
+  rules:
+  - host: nginx.xudaxian.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: v2-service
+            port:
+              number: 80              

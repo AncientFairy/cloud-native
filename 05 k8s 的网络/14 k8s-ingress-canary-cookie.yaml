@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-canary
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true" # 开启金丝雀 
+    nginx.ingress.kubernetes.io/canary-by-cookie: "vip" # 如果 cookie 是 vip = always ，就会路由到到金丝雀版本；如果 cookie 是 vip = never ，就永远不会路由到金丝雀的版本。
+spec:
+  ingressClassName: "nginx"
+  rules:
+  - host: nginx.xudaxian.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: v2-service
+            port:
+              number: 80              
