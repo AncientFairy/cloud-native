@@ -30,6 +30,6 @@ spec:
         path: /usr/share/zoneinfo/Asia/Shanghai
     - name: html 
       nfs: # 使用 nfs 存储驱动
-        path: /nfs/data/nginx/html/  # nfs 共享的目录
+        path: /nfs/data  # nfs 共享的目录
         server:  192.168.65.100  # nfs 服务端的 IP 地址或 hostname 
   restartPolicy: Always
