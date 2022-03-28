@@ -24,6 +24,6 @@ spec:
       mountPath: /etc/localtime
   volumes:
     - name: localtime
-      hostPath:
+      hostPath: # hostPath
         path: /usr/share/zoneinfo/Asia/Shanghai
   restartPolicy: Always
