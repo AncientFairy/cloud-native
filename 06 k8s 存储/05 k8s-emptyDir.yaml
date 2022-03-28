@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.20.2
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi    
+    ports:
+    - containerPort:  80
+      name:  http
+    volumeMounts:
+    - name: app
+      mountPath: /usr/share/nginx/html
+  - name: alpine
+    image: alpine
+    command: ["/bin/sh","-c","while true;do sleep 1; date > /app/index.html;done"]
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi    
+    volumeMounts:
+    - name: app
+      mountPath: /app     
+  volumes:
+    - name: app
+      emptyDir: {} # emptyDir 临时存储
+  restartPolicy: Always
