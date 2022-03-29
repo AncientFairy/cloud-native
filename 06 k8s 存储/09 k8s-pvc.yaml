@@ -45,6 +45,6 @@ spec:
         path: /usr/share/zoneinfo/Asia/Shanghai
     - name: html    
       persistentVolumeClaim:
-        claimName:  nfs-pvc-500m
+        claimName:  nginx-pvc-500m
         readOnly: false  
   restartPolicy: Always
