@@ -1,53 +1,42 @@
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
   name: nfs-pv-10m
-  namespace: default
-  labels:
-    app: nfs
 spec:
   storageClassName: nfs-pv-10m
+  capacity:
+    storage: 10m
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   nfs: # 使用 nfs 存储驱动
-    path: /nfs/data/10m  # nfs 共享的目录，mkdir -pv /nfs/data/10m
-    server:  192.168.65.100  # nfs 服务端的 IP 地址或 hostname 
-  resources:
-    requests:
-      storage: 10m
---- 
+    path: /nfs/data/10m # nfs 共享的目录，mkdir -pv /nfs/data/10m
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
+---
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
   name: nfs-pv-20m
-  namespace: default
-  labels:
-    app: nfs
 spec:
   storageClassName: nfs-pv-20m
+  capacity:
+    storage: 20m
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   nfs: # 使用 nfs 存储驱动
-    path: /nfs/data/20m  # nfs 共享的目录，mkdir -pv /nfs/data/20m
-    server:  192.168.65.100  # nfs 服务端的 IP 地址或 hostname 
-  resources:
-    requests:
-      storage: 20m
+    path: /nfs/data/20m # nfs 共享的目录，mkdir -pv /nfs/data/20m
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
 --- 
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
   name: nfs-pv-1g
-  namespace: default
-  labels:
-    app: nfs
 spec:
   storageClassName: nfs-pv-1g
+  capacity:
+    storage: 20m
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   nfs: # 使用 nfs 存储驱动
-    path: /nfs/data/1Gi  # nfs 共享的目录，mkdir -pv /nfs/data/1Gi
-    server:  192.168.65.100  # nfs 服务端的 IP 地址或 hostname 
-  resources:
-    requests:
-      storage: 1Gi     
+    path: /nfs/data/1Gi # nfs 共享的目录，mkdir -pv /nfs/data/1Gi
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
+   
