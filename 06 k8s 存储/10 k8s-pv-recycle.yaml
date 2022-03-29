@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-10m
+spec:
+  storageClassName: nfs-storage # 用于分组
+  capacity:
+    storage: 10m
+  accessModes:
+    - ReadWriteOnce
+  nfs: # 使用 nfs 存储驱动
+    path: /nfs/data/10m # nfs 共享的目录，mkdir -pv /nfs/data/10m
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
+  persistentVolumeReclaimPolicy: Recycle  # 回收策略
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-20m
+spec:
+  storageClassName: nfs-storage # 用于分组
+  capacity:
+    storage: 20m
+  accessModes:
+    - ReadWriteOnce
+  nfs: # 使用 nfs 存储驱动
+    path: /nfs/data/20m # nfs 共享的目录，mkdir -pv /nfs/data/20m
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
+  persistentVolumeReclaimPolicy: Recycle  # 回收策略  
+--- 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-500m
+spec:
+  storageClassName: nfs-storage # 用于分组
+  capacity:
+    storage: 500m
+  accessModes:
+    - ReadWriteOnce
+  nfs: # 使用 nfs 存储驱动
+    path: /nfs/data/500m # nfs 共享的目录，mkdir -pv /nfs/data/500m
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
+  persistentVolumeReclaimPolicy: Recycle  # 回收策略  
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-1g
+spec:
+  storageClassName: nfs-storage # 用于分组
+  capacity:
+    storage: 20m
+  accessModes:
+    - ReadWriteOnce
+  nfs: # 使用 nfs 存储驱动
+    path: /nfs/data/1Gi # nfs 共享的目录，mkdir -pv /nfs/data/1Gi
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
+  persistentVolumeReclaimPolicy: Recycle  # 回收策略  
