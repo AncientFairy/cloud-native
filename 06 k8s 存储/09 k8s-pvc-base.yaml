@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-pvc-500m
+  namespace: default
+  labels:
+    app: nginx-pvc-500m
+spec:
+  storageClassName: nfs-storage
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500m
