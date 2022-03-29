@@ -29,6 +29,20 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  name: nfs-pv-500m
+spec:
+  storageClassName: nfs-pv-500m
+  capacity:
+    storage: 500m
+  accessModes:
+    - ReadWriteOnce
+  nfs: # 使用 nfs 存储驱动
+    path: /nfs/data/500m # nfs 共享的目录，mkdir -pv /nfs/data/500m
+    server: 192.168.65.100 # nfs 服务端的 IP 地址或 hostname
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: nfs-pv-1g
 spec:
   storageClassName: nfs-pv-1g
