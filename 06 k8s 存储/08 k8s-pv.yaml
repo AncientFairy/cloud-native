@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: nfs-pv-10m
 spec:
-  storageClassName: nfs-pv-10m
+  storageClassName: nfs-storage # 用于分组
   capacity:
     storage: 10m
   accessModes:
@@ -17,7 +17,7 @@ kind: PersistentVolume
 metadata:
   name: nfs-pv-20m
 spec:
-  storageClassName: nfs-pv-20m
+  storageClassName: nfs-storage # 用于分组
   capacity:
     storage: 20m
   accessModes:
@@ -31,7 +31,7 @@ kind: PersistentVolume
 metadata:
   name: nfs-pv-500m
 spec:
-  storageClassName: nfs-pv-500m
+  storageClassName: nfs-storage # 用于分组
   capacity:
     storage: 500m
   accessModes:
@@ -45,7 +45,7 @@ kind: PersistentVolume
 metadata:
   name: nfs-pv-1g
 spec:
-  storageClassName: nfs-pv-1g
+  storageClassName: nfs-storage # 用于分组
   capacity:
     storage: 20m
   accessModes:
