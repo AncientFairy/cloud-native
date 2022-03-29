@@ -5,7 +5,7 @@ metadata:
 provisioner: k8s-sigs.io/nfs-subdir-external-provisioner # 指定一个供应商的名字 
 # or choose another name, 必须匹配 deployment 的 env PROVISIONER_NAME'
 parameters:
-  archiveOnDelete: "false"
+  archiveOnDelete: "false" # 删除 PV 的时候，PV 中的内容是否备份
 ---
 apiVersion: apps/v1
 kind: Deployment
