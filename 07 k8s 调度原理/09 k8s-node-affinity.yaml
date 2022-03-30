@@ -29,7 +29,7 @@ spec:
   affinity: 
     nodeAffinity:
       # DuringScheduling（调度期间有效）IgnoredDuringExecution（执行期间忽略，执行期间：Pod 运行期间）
-      requiredDuringSchedulingIgnoredDuringExecution: # 硬性过滤：排除不具备指定 label 的 node
+      requiredDuringSchedulingIgnoredDuringExecution: # 硬性过滤：Node 节点必须满足指定的所有规则才可以
         nodeSelectorTerms:
           - matchExpressions: # 所有 matchExpressions 满足条件才行
             - key: disktype
@@ -37,7 +37,7 @@ spec:
               values: 
                 - ssd      
                 - hdd
-      preferredDuringSchedulingIgnoredDuringExecution: # 软性评分：不具备指定 label 的 node 打低分，降低 node 被选中的几率
+      preferredDuringSchedulingIgnoredDuringExecution: # 软性评分：优先调度到满足指定的规则的 Node
         - weight: 1
           preference: # 一个节点选择器项，与相应的权重相关联
             matchExpressions:
