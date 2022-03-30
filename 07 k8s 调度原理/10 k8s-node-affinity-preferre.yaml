@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.20.2
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort: 80
+      name:  http
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+  volumes:
+    - name: localtime
+      hostPath:
+        path: /usr/share/zoneinfo/Asia/Shanghai
+  affinity: 
+    nodeAffinity:
+      # DuringScheduling（调度期间有效）IgnoredDuringExecution（执行期间忽略，执行期间：Pod 运行期间）
+      preferredDuringSchedulingIgnoredDuringExecution: # 软性评分：优先调度到满足指定的规则的 Node
+        - weight: 90 # 权重
+          preference: # 一个节点选择器项，与相应的权重相关联
+            matchExpressions:
+              - key: disk
+                operator: Gt
+                values: 
+                 - "40"
+        - weight: 10 # 权重
+          preference: # 一个节点选择器项，与相应的权重相关联
+            matchExpressions:
+              - key: gpu
+                operator: Gt
+                values: 
+                 - "4000"        
+  restartPolicy: Always

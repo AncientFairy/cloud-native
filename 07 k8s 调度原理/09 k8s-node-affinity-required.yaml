@@ -37,19 +37,4 @@ spec:
               values: 
                 - ssd      
                 - hdd
-      preferredDuringSchedulingIgnoredDuringExecution: # 软性评分：优先调度到满足指定的规则的 Node
-        - weight: 90 # 权重
-          preference: # 一个节点选择器项，与相应的权重相关联
-            matchExpressions:
-              - key: disk
-                operator: Gt
-                values: 
-                 - "40"
-        - weight: 10 # 权重
-          preference: # 一个节点选择器项，与相应的权重相关联
-            matchExpressions:
-              - key: gpu
-                operator: Gt
-                values: 
-                 - "4000"        
   restartPolicy: Always
