@@ -44,5 +44,4 @@ spec:
                 operator: In
                 values:
                   - ssd
-                    
   restartPolicy: Always
