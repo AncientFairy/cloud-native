@@ -7,5 +7,5 @@ spec:
   - max:
       cpu: "800m"
     min:
-      cpu: "200m"
+      cpu: "200m" # Pod 中的容器的 cpu 的范围是 200m~800m
     type: Container
