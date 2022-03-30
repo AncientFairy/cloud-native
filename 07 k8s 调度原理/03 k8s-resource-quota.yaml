@@ -5,4 +5,4 @@ metadata:
   namespace: default # 限制 default 名称空间
 spec:
   hard:
-    pods: "3"
+    pods: "3" # 限制 Pod 的数量
