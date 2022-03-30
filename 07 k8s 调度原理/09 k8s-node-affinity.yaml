@@ -28,6 +28,7 @@ spec:
         path: /usr/share/zoneinfo/Asia/Shanghai
   affinity: 
     nodeAffinity:
+      # DuringScheduling（调度期间有效）IgnoredDuringExecution（执行期间忽略，执行期间：Pod 运行期间）
       requiredDuringSchedulingIgnoredDuringExecution: # 硬性过滤：排除不具备指定 label 的 node
         nodeSelectorTerms:
           - matchExpressions: # 所有 matchExpressions 满足条件才行
