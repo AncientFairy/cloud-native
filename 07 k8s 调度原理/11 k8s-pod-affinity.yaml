@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  redis-cache
+  name: redis-cache
   namespace: default
   labels:
     app: redis-deploy
@@ -27,7 +27,7 @@ spec:
              cpu: 500m
         ports:
         - containerPort: 2375
-          name:  redis
+          name: redis
         volumeMounts:
         - name: localtime
           mountPath: /etc/localtime
