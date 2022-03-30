@@ -15,6 +15,18 @@ spec:
       labels:
         app: store
     spec:
+      affinity: # 亲和性配置
+        podAntiAffinity: # Pod 反亲和性，符合以下指定条件不会被调度过去
+          requiredDuringSchedulingIgnoredDuringExecution: # 硬限制
+            - labelSelector:
+                matchExpressions: 
+                  - key: app
+                    operator: In
+                    values:
+                      - store
+              topologyKey: kubernetes.io/hostname # 拓扑键，划分逻辑区域。 
+              # node 节点以 kubernetes.io/hostname 为拓扑网络，如果 kubernetes.io/hostname 相同，就认为是同一个东西。
+              # 亲和就是都放在这个逻辑区域，反亲和就是必须避免放在同一个逻辑区域。
       containers:
       - name: redis-server
         image: redis:5.0.14-alpine
