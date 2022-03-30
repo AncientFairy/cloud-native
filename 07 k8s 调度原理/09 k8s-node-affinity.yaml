@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.20.2
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort: 80
+      name:  http
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+  volumes:
+    - name: localtime
+      hostPath:
+        path: /usr/share/zoneinfo/Asia/Shanghai
+  affinity: 
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution: # 硬性过滤：排除不具备指定 label 的 node
+        nodeSelectorTerms:
+          - matchExpressions: # 所有 matchExpressions 满足条件才行
+            - key: disktype
+              operator: In
+              values: 
+                - ssd      
+                - hdd
+      preferredDuringSchedulingIgnoredDuringExecution: # 软性评分：不具备指定 label 的 node 打低分，降低 node 被选中的几率
+        - weight: 1
+          preference: # 一个节点选择器项，与相应的权重相关联
+            matchExpressions:
+              - key: disktype
+                operator: In
+                values:
+                  - ssd
+                    
+  restartPolicy: Always
