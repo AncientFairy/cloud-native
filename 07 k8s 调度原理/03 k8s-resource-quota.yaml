@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: mem-cpu-2
+  name: pods-rq
   namespace: default # 限制 default 名称空间
 spec:
   hard:
