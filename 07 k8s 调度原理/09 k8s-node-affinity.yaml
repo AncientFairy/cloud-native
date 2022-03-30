@@ -33,7 +33,7 @@ spec:
         nodeSelectorTerms:
           - matchExpressions: # 所有 matchExpressions 满足条件才行
             - key: disktype
-              operator: In
+              operator: In # 支持 Exists, DoesNotExist, In, NotIn, Gt, Lt
               values: 
                 - ssd      
                 - hdd
