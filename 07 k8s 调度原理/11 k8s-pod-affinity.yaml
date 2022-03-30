@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  redis-cache
+  namespace: default
+  labels:
+    app: redis-deploy
+spec:
+  selector:
+    matchLabels:
+      app: store
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: store
+    spec:
+      containers:
+      - name: redis-server
+        image: redis:5.0.14-alpine
+        resources:
+           limits:
+             memory: 500Mi
+             cpu: 1
+           requests:
+             memory: 250Mi
+             cpu: 500m
+        ports:
+        - containerPort: 2375
+          name:  redis
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+      restartPolicy: Always
