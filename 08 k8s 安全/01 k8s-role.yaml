@@ -20,3 +20,11 @@ rules:
   resources: ["secrets"]
   verbs: ["get", "watch", "list"]
 ---
+# ServiceAccount
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ServiceAccount
+metadata:
+  name: xudaxian # ServiceAccount 的名称
+  namespace: default
+---
+
