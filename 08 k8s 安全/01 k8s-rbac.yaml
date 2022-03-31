@@ -31,7 +31,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: rolebinding
+  name: xudaxian-rolebinding
   namespace: default
 subjects:
 - kind: ServiceAccount
@@ -45,11 +45,11 @@ roleRef:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: clusterrolebinding
+  name: xudaxian-clusterrolebinding
 subjects:
 - kind: ServiceAccount
   name: xudaxian # "name" 是区分大小写的
-  namespace: default
+  namespace: default # 如果资源是某个 namespace 下的，那么就需要设置 namespace
 roleRef:
   kind: ClusterRole
   name: xudaxian-clusterrole
