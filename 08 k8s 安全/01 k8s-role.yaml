@@ -4,7 +4,8 @@ metadata:
   name: role
   namespace: default # 所属的名称空间
 rules: # 当前角色的规则
-- apiGroups: [""] # "" 标明 core API 组
-  resources: ["pods"] # 指定能操作的资源 kubectl api-resources 查看即可。
-  verbs: ["get", "watch", "list"] # 操作动作
+- apiGroups: [""] # "" 标明 core API 组，默认留空即可。
+  resources: ["pods"] # 指定能操作的资源 ，通过 kubectl api-resources 查看即可。
+  # resourceNames: [""] #  指定只能操作某个名字的资源
+  verbs: ["get", "watch", "list"] # 操作动作，通过 kubectl api-resources -o wide 查看即可。 
 
