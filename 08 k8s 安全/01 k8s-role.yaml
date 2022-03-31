@@ -36,20 +36,20 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: xudaxian # "name" 是区分大小写的
-  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: role
   apiGroup: rbac.authorization.k8s.io
 ---
+# 账号和集群角色绑定
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: clusterrolebinding
 subjects:
 - kind: ServiceAccount
-  name: default/xudaxian # Name is case sensitive
-  apiGroup: rbac.authorization.k8s.io
+  name: xudaxian # Name is case sensitive
+  namespace: default
 roleRef:
   kind: ClusterRole
   name: clusterrole
