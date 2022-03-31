@@ -48,7 +48,7 @@ metadata:
   name: clusterrolebinding
 subjects:
 - kind: ServiceAccount
-  name: xudaxian # Name is case sensitive
+  name: xudaxian # "name" 是区分大小写的
   namespace: default
 roleRef:
   kind: ClusterRole
