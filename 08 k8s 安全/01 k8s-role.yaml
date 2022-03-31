@@ -17,7 +17,7 @@ metadata:
   name: xudaxian-clusterrole
 rules:
 - apiGroups: [""] # "" 标明 core API 组，默认留空即可。
-  resources: ["secrets"]
+  resources: ["namespaces"]
   verbs: ["get", "watch", "list"]
 ---
 # ServiceAccount
